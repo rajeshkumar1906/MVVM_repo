@@ -7,12 +7,11 @@ import javax.inject.Inject
 class APIServiceRepository @Inject constructor(
     val apiService: APIService
 ) {
-    suspend fun getApiData(): Resource<Root> {
+    suspend fun getApiData(): Resource<Root> =
         try {
              val response = apiService.getDetails()
             Resource.Success(response)
         } catch (exception: Exception){
              Resource.Error(exception)
         }
-    }
 }

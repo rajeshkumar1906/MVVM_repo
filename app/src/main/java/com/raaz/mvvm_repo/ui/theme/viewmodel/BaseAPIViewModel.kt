@@ -9,9 +9,10 @@ import com.raaz.mvvm_repo.network.Resource
 import com.raaz.mvvm_repo.usecase.APIServiceUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 @HiltViewModel
-class BaseAPIViewModel(
+class BaseAPIViewModel @Inject constructor(
     val apiServiceUseCase: APIServiceUseCase
 ) : ViewModel() {
 

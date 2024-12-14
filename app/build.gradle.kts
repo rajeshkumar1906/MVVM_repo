@@ -7,7 +7,7 @@ plugins {
 
 android {
     namespace = "com.raaz.mvvm_repo"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.raaz.mvvm_repo"
