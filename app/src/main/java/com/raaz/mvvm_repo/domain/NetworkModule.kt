@@ -1,5 +1,6 @@
 package com.raaz.mvvm_repo.domain
 
+import android.util.Config
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -35,7 +36,7 @@ object NetworkModule {
     @Provides
     fun providesRetrofit(httpClient: OkHttpClient): Retrofit {
         return Retrofit.Builder()
-            .baseUrl("")
+            .baseUrl("https://gorest.co.in/")
             .addConverterFactory(GsonConverterFactory.create())
             .client(httpClient)
             .build()

@@ -18,16 +18,44 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
-
+    buildFeatures {
+        compose = true
+        buildConfig = true
+    }
     buildTypes {
         release {
             isMinifyEnabled = false
+            val BASE_URL = "BASE_URL"
+            val DEV_BASE_URL: String by project
+            buildConfigField("String", BASE_URL,DEV_BASE_URL )
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
         }
     }
+
+   flavorDimensions ("MVVM")
+
+    productFlavors {
+      val BASE_URL = "BASE_URL"
+        create("dev") {
+            versionNameSuffix = "-Dev"
+            val DEV_BASE_URL: String by project
+            buildConfigField("String", BASE_URL,DEV_BASE_URL )
+        }
+        create("staging") {
+            versionNameSuffix = "-Stage"
+            val DEV_BASE_URL: String by project
+            buildConfigField("String", BASE_URL,DEV_BASE_URL )
+        }
+        create("production") {
+            versionNameSuffix = "-Production"
+            val DEV_BASE_URL: String by project
+            buildConfigField("String", BASE_URL,DEV_BASE_URL )
+        }
+    }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
@@ -35,9 +63,7 @@ android {
     kotlinOptions {
         jvmTarget = "11"
     }
-    buildFeatures {
-        compose = true
-    }
+
 }
 
 dependencies {
