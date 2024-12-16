@@ -1,20 +1,29 @@
 package com.raaz.mvvm_repo.di
 
+import android.content.Context
 import com.raaz.domain.repository.APIService
+import com.raaz.mvvm_repo.MyApplication
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
+import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
     private const val TIMEOUT = 60L
 
+    @Provides
+    @Singleton
+    fun providesMainApplication(@ApplicationContext context: Context): MyApplication {
+        return context as MyApplication
+    }
 
    @Provides
    fun providesHTTPClient(): OkHttpClient {
