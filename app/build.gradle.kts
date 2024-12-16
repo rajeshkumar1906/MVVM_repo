@@ -23,6 +23,12 @@ android {
         buildConfig = true
     }
     buildTypes {
+        debug {
+            val BASE_URL = "BASE_URL"
+            val DEV_BASE_URL: String by project
+            buildConfigField("String", BASE_URL,DEV_BASE_URL )
+
+        }
         release {
             isMinifyEnabled = false
             val BASE_URL = "BASE_URL"
@@ -32,6 +38,7 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            signingConfig = signingConfigs.getByName("debug")
         }
     }
 
@@ -67,7 +74,8 @@ android {
 }
 
 dependencies {
-
+    implementation(project(":data"))
+    implementation(project(":domainn"))
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)

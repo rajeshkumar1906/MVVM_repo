@@ -1,6 +1,6 @@
-package com.raaz.mvvm_repo.domain
+package com.raaz.mvvm_repo.di
 
-import android.util.Config
+import com.raaz.domain.repository.APIService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

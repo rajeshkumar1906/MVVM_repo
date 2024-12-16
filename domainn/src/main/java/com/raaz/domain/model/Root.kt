@@ -1,4 +1,4 @@
-package com.raaz.mvvm_repo.model
+package com.raaz.domain.model
 
 data class Root(var id: Int = 0,
                 var name: String? = null,

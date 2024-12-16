@@ -1,7 +1,7 @@
-package com.raaz.mvvm_repo.network
+package com.raaz.data
 
+import android.net.http.HttpException
 import androidx.annotation.Keep
-import retrofit2.HttpException
 
 sealed class Resource<out T> {
     @Keep

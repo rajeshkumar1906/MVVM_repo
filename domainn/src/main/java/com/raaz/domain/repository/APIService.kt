@@ -1,8 +1,7 @@
-package com.raaz.mvvm_repo.domain
+package com.raaz.domain.repository
 
-import com.raaz.mvvm_repo.model.Root
+import com.raaz.domain.model.Root
 import retrofit2.http.GET
-import retrofit2.http.POST
 
 interface APIService {
     @GET("public/v2/comments")

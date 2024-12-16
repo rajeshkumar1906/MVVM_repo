@@ -1,6 +1,8 @@
-package com.raaz.mvvm_repo.domain
+package com.raaz.mvvm_repo.di
 
-import com.raaz.mvvm_repo.usecase.APIServiceUseCase
+
+import com.raaz.domain.usecase.APIServiceUseCase
+import com.raaz.domain.repo.APIServiceRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -11,5 +13,6 @@ import dagger.hilt.components.SingletonComponent
 object AppModule {
     @Provides
     fun provideAPIServiceUseCase(apiServiceRepository: APIServiceRepository):
-            APIServiceUseCase = APIServiceUseCase(apiServiceRepository)
+            APIServiceUseCase =
+        APIServiceUseCase(apiServiceRepository)
 }
