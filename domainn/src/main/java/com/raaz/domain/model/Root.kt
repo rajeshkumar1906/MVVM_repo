@@ -1,5 +1,11 @@
 package com.raaz.domain.model
 
-data class Root(var id: Int = 0,
-                var name: String? = null,
-                var email: String? = null)
+import com.google.gson.annotations.SerializedName
+
+data class Root(
+    @SerializedName("id")
+    var id: Int = 0,
+    @SerializedName("name")
+    var name: String? = null,
+    @SerializedName("email")
+    var email: String? = null)

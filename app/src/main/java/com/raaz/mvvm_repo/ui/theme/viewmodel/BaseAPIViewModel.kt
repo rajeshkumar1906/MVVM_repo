@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.raaz.domain.model.Root
 import com.raaz.domain.usecase.APIServiceUseCase
 import com.raaz.data.Resource.*
+import com.raaz.domain.model.APIResponse
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -16,8 +17,8 @@ class BaseAPIViewModel @Inject constructor(
     val apiServiceUseCase: APIServiceUseCase
 ) : ViewModel() {
 
-    private var _apiResponse = MutableLiveData<Root>()
-    val apiResponse: LiveData<Root> = _apiResponse
+    private var _apiResponse = MutableLiveData<List<Root>>()
+    val apiResponse: LiveData<List<Root>> = _apiResponse
     private var _errorResponse = MutableLiveData<String>()
     val error: LiveData<String> = _errorResponse
 

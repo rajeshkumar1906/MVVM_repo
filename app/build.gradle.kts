@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.org.jetbrains.kotlin.kapt)
+    alias(libs.plugins.hilt)
 }
 
 android {
@@ -15,12 +16,15 @@ android {
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
-
+        multiDexEnabled = true
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
     buildFeatures {
         compose = true
         buildConfig = true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.5.3"
     }
     buildTypes {
         debug {
@@ -103,10 +107,14 @@ dependencies {
     //Coroutines
     implementation (libs.kotlinx.coroutines.android)
     implementation (libs.kotlinx.coroutines.core)
+    implementation (libs.androidx.hilt.navigation.compose)
+
+    implementation (libs.androidx.work.rxjava2)
+
 }
 
-kapt {
-    javacOptions {
-        option("-Adagger.hilt.android.internal.disableAndroidSuperclassValidation=true")
-    }
-}
+//kapt {
+//    javacOptions {
+//        option("-Adagger.hilt.android.internal.disableAndroidSuperclassValidation=true")
+//    }
+//}

@@ -47,6 +47,7 @@ object NetworkModule {
         return Retrofit.Builder()
             .baseUrl("https://gorest.co.in/")
             .addConverterFactory(GsonConverterFactory.create())
+//            .addCallAdapterFactory(RX)
             .client(httpClient)
             .build()
     }

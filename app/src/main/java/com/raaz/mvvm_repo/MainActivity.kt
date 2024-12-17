@@ -19,7 +19,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
-   // private val viewModel: BaseAPIViewModel by viewModels()
+    private val viewModel: BaseAPIViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -34,15 +34,19 @@ class MainActivity : ComponentActivity() {
             }
         }
         observables()
+        viewModel.getResponse()
     }
+
     private fun observables() {
-//viewModel.apiResponse.observe(this){ it ->
-//
-//    Log.e("MainActivity","Response ${it.name}")
-//}
+        viewModel.apiResponse.observe(this) { it ->
+
+            Log.e("MainActivity", "Response ${it}")
+        }
+        viewModel.error.observe(this){ it ->
+            Log.e("MainActivity","Error ${it}")
+        }
     }
 }
-
 
 
 @Composable

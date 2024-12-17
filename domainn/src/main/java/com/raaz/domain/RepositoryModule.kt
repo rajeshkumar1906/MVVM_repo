@@ -12,7 +12,7 @@ import dagger.hilt.migration.DisableInstallInCheck
 import javax.inject.Singleton
 
 @Module
-@DisableInstallInCheck
+@InstallIn(SingletonComponent::class)
 object RepositoryModule {
 
     @Provides
