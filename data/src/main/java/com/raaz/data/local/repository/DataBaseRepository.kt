@@ -1,7 +1,7 @@
-package com.raaz.mvvm_repo.repository
+package com.raaz.data.local.repository
 
 import android.content.Context
-import com.raaz.mvvm_repo.db.DataBase
+import com.raaz.data.local.db.DataBase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

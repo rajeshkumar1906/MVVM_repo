@@ -1,4 +1,4 @@
-package com.raaz.mvvm_repo.db
+package com.raaz.data.local.db
 
 import android.content.ContentResolver
 import android.content.Context

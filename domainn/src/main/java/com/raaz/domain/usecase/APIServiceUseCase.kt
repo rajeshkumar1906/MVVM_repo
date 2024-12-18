@@ -7,4 +7,5 @@ class APIServiceUseCase @Inject constructor(
    val apiServiceRepository: APIServiceRepository
 ) {
     operator suspend fun  invoke() = apiServiceRepository.getApiData()
+    suspend fun getContext() = apiServiceRepository.getDataFromDB()
 }
