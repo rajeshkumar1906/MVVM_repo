@@ -8,6 +8,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
+import kotlinx.coroutines.DelicateCoroutinesApi
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -19,6 +20,7 @@ import javax.inject.Singleton
 object NetworkModule {
     private const val TIMEOUT = 60L
 
+    @OptIn(DelicateCoroutinesApi::class)
     @Provides
     @Singleton
     fun providesMainApplication(@ApplicationContext context: Context): MyApplication {
