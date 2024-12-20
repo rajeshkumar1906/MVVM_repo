@@ -1,6 +1,7 @@
 package com.raaz.domain.repo
 
 import android.content.Context
+import android.util.Log
 import com.raaz.data.Resource
 import com.raaz.data.local.db.DataBase
 import com.raaz.data.local.entity.UserEntity
@@ -30,6 +31,7 @@ class APIServiceRepository @Inject constructor(
         val dataBaseItems:ArrayList<UserEntity> = ArrayList()
         when(data.isEmpty()) {
             true -> {
+                Log.e("Repo","calling API")
                 apiData = apiService.getDetails() as ArrayList
                 apiData.forEach {
                     dataBaseItems.add(UserEntity(it.id,it.name,it.email))
@@ -37,6 +39,7 @@ class APIServiceRepository @Inject constructor(
                 dao.insertAll(dataBaseItems)
             }
             false -> {
+                Log.e("Repo","calling Database")
                 data.forEach {
                     apiData.add(Root(it.userId,it.name,it.email))
                 }
