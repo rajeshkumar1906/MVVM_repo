@@ -3,7 +3,9 @@ package com.raaz.domain.di
 import android.content.Context
 import com.raaz.data.local.db.DataBase
 import com.raaz.domain.repo.APIServiceRepository
+import com.raaz.domain.repo.LibServiceRepository
 import com.raaz.domain.repository.APIService
+import com.raaz.domain.repository.OpenLibService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -28,5 +30,10 @@ object RepositoryModule {
     fun providesApiServiceRepository(apiService: APIService, context: Context,dataBase: DataBase):
             APIServiceRepository =
         APIServiceRepository(apiService,context,dataBase)
+
+    @Provides
+    @Singleton
+    fun providesLibApiServiceRepository(libService: OpenLibService): LibServiceRepository =
+        LibServiceRepository(libService)
 
 }

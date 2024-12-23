@@ -33,10 +33,13 @@ import dagger.hilt.android.AndroidEntryPoint
 import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.lifecycle.findViewTreeLifecycleOwner
+import androidx.lifecycle.lifecycleScope
+import com.raaz.mvvm_repo.ui.theme.viewmodel.OpenLibViewModel
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     private val viewModel: BaseAPIViewModel by viewModels()
+    private val openLibViewModel: OpenLibViewModel by viewModels()
     @OptIn(ExperimentalFoundationApi::class, ExperimentalUnitApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,12 +53,22 @@ class MainActivity : ComponentActivity() {
 //                    )
 
 //                    addUserList()
-                    Observables(viewModel, Modifier.padding(paddingValues))
+//                    Observables(viewModel, Modifier.padding(paddingValues))
+                    showLibData(openLibViewModel,Modifier.padding(paddingValues))
                 }
             }
         }
 //        observables()
         //viewModel.getResponse()
+        openLibViewModel.getLibResponse()
+        openLibViewModel.libResponse.observe(this){
+            Log.e("Main Activity","<>Lib response $it")
+        }
+
+        openLibViewModel.error.observe(this){
+            Log.e("Main Activity","Error $it")
+        }
+
     }
 
 
@@ -96,6 +109,40 @@ fun addUserList(userDataList: List<Root> = emptyList()) {
         }
     }
 }
+
+@ExperimentalFoundationApi
+@Composable
+private fun showLibData(openLibViewModel: OpenLibViewModel,modifier: Modifier){
+    LaunchedEffect(key1 = Unit) {
+        openLibViewModel.getLibResponse()
+    }
+    val data = openLibViewModel.libResponse.observeAsState()
+    data.value?.docs?.let {
+        LazyColumn(
+            contentPadding = PaddingValues(horizontal = 16.dp, vertical = 16.dp),
+            verticalArrangement = Arrangement.spacedBy(3.dp),
+        ) {
+            item {
+                Text(text = "I'm header.")
+            }
+            items(items = it) { item ->
+                item?.title?.let {
+                    Greeting(it,modifier)
+                }
+            }
+            // footer
+            item {
+                Text(
+                    text = "I'm footer.",
+                    modifier = Modifier.fillMaxWidth(),
+                    textAlign = TextAlign.Center
+                )
+            }
+        }
+    }
+}
+
+
 
 @ExperimentalFoundationApi
 @OptIn(ExperimentalAnimationApi::class)

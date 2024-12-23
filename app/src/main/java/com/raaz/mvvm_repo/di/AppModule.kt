@@ -4,6 +4,8 @@ package com.raaz.mvvm_repo.di
 import android.content.Context
 import com.raaz.domain.usecase.APIServiceUseCase
 import com.raaz.domain.repo.APIServiceRepository
+import com.raaz.domain.repo.LibServiceRepository
+import com.raaz.domain.usecase.LibServiceUseCase
 import com.raaz.mvvm_repo.MyApplication
 import dagger.Module
 import dagger.Provides
@@ -25,4 +27,8 @@ object AppModule {
     fun provideAPIServiceUseCase(apiServiceRepository: APIServiceRepository):
             APIServiceUseCase =
         APIServiceUseCase(apiServiceRepository)
+
+    @Provides
+    fun providesLibServiceUseCase(libServiceRepository: LibServiceRepository):
+            LibServiceUseCase = LibServiceUseCase(libServiceRepository)
 }
