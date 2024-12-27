@@ -10,23 +10,6 @@ import javax.inject.Inject
 
 class WorkManagerBuilder @Inject constructor() {
 
-    companion object {
-        private var INSTANCE: WorkManagerBuilder? = null
-
-        fun getInstance(): WorkManagerBuilder? {
-            synchronized(this) {
-                val instance = INSTANCE
-
-                if (instance == null) {
-
-                    INSTANCE = instance
-                }
-                return instance
-            }
-        }
-
-    }
-
     fun syncToDB() {
 //            val constraints: Constraints = Constraints.Builder()
 //                .setRequiresCharging(true)
