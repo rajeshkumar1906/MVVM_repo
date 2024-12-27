@@ -81,6 +81,7 @@ android {
 dependencies {
     implementation(project(":data"))
     implementation(project(":domainn"))
+    implementation ("androidx.appcompat:appcompat:1.7.0")
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
@@ -90,6 +91,8 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
     implementation(libs.androidx.runtime.livedata)
+    implementation(libs.androidx.hilt.common)
+    implementation(libs.androidx.espresso.core)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -117,6 +120,11 @@ dependencies {
     implementation(libs.androidx.room.runtime)
     implementation(libs.androidx.room.ktx)
     ksp(libs.androidx.room.compiler)
+
+    //Work manager
+    implementation (libs.androidx.work.runtime.ktx)
+    implementation (libs.androidx.hilt.work)
+    kapt (libs.androidx.hilt.compiler)
 
 }
 
