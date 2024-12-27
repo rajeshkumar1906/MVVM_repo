@@ -3,6 +3,7 @@ package com.raaz.data.local.dao
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
+import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.raaz.data.local.entity.UserEntity
 
@@ -11,7 +12,7 @@ interface UserDao {
     @Query("SELECT * FROM USERENTITY")
     suspend fun getAll(): List<UserEntity>
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(details: List<UserEntity>)
 
     @Delete

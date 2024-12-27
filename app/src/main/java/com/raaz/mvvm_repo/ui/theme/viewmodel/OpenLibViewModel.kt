@@ -19,6 +19,7 @@ import com.raaz.data.Resource
 import com.raaz.domain.model.openlib.OpenLibData
 import com.raaz.domain.usecase.LibServiceUseCase
 import com.raaz.mvvm_repo.MyApplication
+import com.raaz.mvvm_repo.sync.WorkManagerBuilder
 import com.raaz.mvvm_repo.sync.WorkScheduler
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.DelicateCoroutinesApi
@@ -34,7 +35,8 @@ import java.util.concurrent.TimeUnit
 @OptIn(DelicateCoroutinesApi::class)
 @HiltViewModel
 class OpenLibViewModel @Inject constructor(
-    val libServiceUseCase: LibServiceUseCase
+    val libServiceUseCase: LibServiceUseCase,
+    val workManagerBuilder: WorkManagerBuilder
 ): ViewModel() {
 
     private var _libData = MutableLiveData<OpenLibData>()
@@ -51,7 +53,7 @@ class OpenLibViewModel @Inject constructor(
                 is Resource.Success -> {
                     _libData.value = response.result
                     _libDataFlow.emit(response.result)
-                    syncToDB()
+                    workManagerBuilder.syncToDB()
                 }
                 is Resource.Error -> error.value = response.exception.message
             }

@@ -1,30 +1,61 @@
 package com.raaz.mvvm_repo.sync
 
-import android.content.Context
-import androidx.work.BackoffPolicy
+import androidx.work.Constraints
+import androidx.work.NetworkType
 import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.WorkManager
-import dagger.hilt.EntryPoint
-import dagger.hilt.android.qualifiers.ApplicationContext
-import java.util.concurrent.TimeUnit
+import androidx.work.workDataOf
 import javax.inject.Inject
 
 
+class WorkManagerBuilder @Inject constructor() {
 
-//@EntryPoint'
-object WorkManagerBuilder {
+    companion object {
+        private var INSTANCE: WorkManagerBuilder? = null
 
-//    @Inject
-//    lateinit var context: ApplicationContext
-//
-//    fun createWorkRequest(){
-//        val workRequest = OneTimeWorkRequestBuilder<WorkScheduler>()
-//            .setBackoffCriteria(
-//                BackoffPolicy.LINEAR,
-//                30,
+        fun getInstance(): WorkManagerBuilder? {
+            synchronized(this) {
+                val instance = INSTANCE
+
+                if (instance == null) {
+
+                    INSTANCE = instance
+                }
+                return instance
+            }
+        }
+
+    }
+
+    fun syncToDB() {
+//            val constraints: Constraints = Constraints.Builder()
+//                .setRequiresCharging(true)
+//                .setRequiredNetworkType(NetworkType.CONNECTED)
+//                .build()
+//            val workRequest: WorkRequest = PeriodicWorkRequest.Builder(
+//                WorkScheduler::class.java, 5,
 //                TimeUnit.SECONDS
-//            ).build()
-//        WorkManager.getInstance(context as Context).enqueue(workRequest)
-//    }
+//            )
+//                .setConstraints(constraints)
+//                .build()
+        val workManager: WorkManager = WorkManager.getInstance()
+//            workManager.enqueue(workRequest)
+////        workManager.getWorkInfoByIdLiveData(workRequest.id)
+//            workManager.getWorkInfoByIdLiveData(workRequest.id)
+
+        // One time request
+        val constraints = Constraints.Builder()
+            .setRequiredNetworkType(NetworkType.CONNECTED)
+            .build()
+
+        val request = OneTimeWorkRequestBuilder<WorkScheduler>()
+            .setConstraints(constraints)
+            .setInputData(
+                workDataOf("URI" to "")
+            )
+            .build()
+        workManager.enqueue(request)
+
+    }
 }
 
