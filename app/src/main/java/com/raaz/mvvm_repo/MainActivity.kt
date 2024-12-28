@@ -32,6 +32,7 @@ import com.raaz.mvvm_repo.ui.theme.viewmodel.BaseAPIViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.livedata.observeAsState
+import com.raaz.mvvm_repo.ui.theme.ShowOpenLibScreen
 import com.raaz.mvvm_repo.ui.theme.viewmodel.OpenLibViewModel
 
 @AndroidEntryPoint
@@ -45,68 +46,18 @@ class MainActivity : ComponentActivity() {
         setContent {
             MVVM_repoTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { paddingValues ->
-//                    Greeting(
-//                        name = "Android",
-//                        modifier = Modifier.padding(innerPadding)
-//                    )
-
-//                    addUserList()
-//                    Observables(viewModel, Modifier.padding(paddingValues))
-                    showLibData(openLibViewModel,Modifier.padding(paddingValues))
+//                    showLibData(openLibViewModel,Modifier.padding(paddingValues))
+                    ShowOpenLibScreen(openLibViewModel,Modifier.padding(paddingValues))
                 }
             }
         }
-//        observables()
-        //viewModel.getResponse()
-        openLibViewModel.getLibResponse()
-        openLibViewModel.libResponse.observe(this){
-            Log.e("Main Activity","<>Lib response $it")
-        }
-
         openLibViewModel.error.observe(this){
             Log.e("Main Activity","Error $it")
         }
 
     }
-
-
 }
 
-@Composable
-fun addUserList(userDataList: List<Root> = emptyList()) {
-
-    val context = LocalContext.current
-
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .fillMaxWidth()
-            .fillMaxHeight()
-    ) {
-
-        LazyColumn(
-            contentPadding = PaddingValues(horizontal = 16.dp, vertical = 16.dp),
-            verticalArrangement = Arrangement.spacedBy(3.dp),
-        ) {
-
-            // header
-            item {
-                Text(text = "I'm header.")
-            }
-
-
-
-            // footer
-            item {
-                Text(
-                    text = "I'm footer.",
-                    modifier = Modifier.fillMaxWidth(),
-                    textAlign = TextAlign.Center
-                )
-            }
-        }
-    }
-}
 
 @ExperimentalFoundationApi
 @Composable
