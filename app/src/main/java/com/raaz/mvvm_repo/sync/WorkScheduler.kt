@@ -28,30 +28,12 @@ class WorkScheduler @AssistedInject constructor(
             val apiServiceRepo = hiltEntryPoint.getAPIServiceRepository()
             val dataBaseManager = hiltEntryPoint.getDataBaseManager()
             val apiData = apiServiceRepo.getApiData()
-//            val database = DataBase.getInstance(context)
-//
-//
-//
-//            val dao = database.userDao()
-//            dao.deleteAll()
-//            val apiData = apiServiceRepo.getApiData()
-//            Log.e("WorkScheduler","<>dowork ${apiData}")
-//            val dataBaseItems:ArrayList<UserEntity> = ArrayList()
-//            when (apiData){
-//                is Resource.Success -> {
-//                    val data = apiData.result as ArrayList
-//                    data.forEach {
-//                        dataBaseItems.add(UserEntity(it.id,it.name,it.email))
-//                    }
-//                    dao.insertAll(dataBaseItems)
-//                }
-//                is Resource.Error -> {
-//                    Result.Failure()
-//                }
-//            }
             dataBaseManager.updateDB(apiData){
                 when(it){
-                    true -> Result.Success()
+                    true -> {
+                        Log.e("WorkScheduler","<>Success")
+                        Result.Success()
+                    }
                     false -> Result.Failure()
                 }
             }

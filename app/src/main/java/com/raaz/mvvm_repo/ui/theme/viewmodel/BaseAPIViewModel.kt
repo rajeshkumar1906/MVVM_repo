@@ -5,14 +5,12 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.raaz.domain.model.Root
+import com.raaz.data.Root
 import com.raaz.domain.usecase.APIServiceUseCase
 import com.raaz.data.Resource.*
-import com.raaz.domain.model.APIResponse
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
-import kotlin.math.exp
 
 @HiltViewModel
 class BaseAPIViewModel @Inject constructor(

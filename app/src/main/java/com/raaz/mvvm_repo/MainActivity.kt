@@ -26,14 +26,12 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.ExperimentalUnitApi
 import androidx.compose.ui.unit.dp
-import com.raaz.domain.model.Root
+import com.raaz.data.Root
 import com.raaz.mvvm_repo.ui.theme.MVVM_repoTheme
 import com.raaz.mvvm_repo.ui.theme.viewmodel.BaseAPIViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.livedata.observeAsState
-import androidx.lifecycle.findViewTreeLifecycleOwner
-import androidx.lifecycle.lifecycleScope
 import com.raaz.mvvm_repo.ui.theme.viewmodel.OpenLibViewModel
 
 @AndroidEntryPoint

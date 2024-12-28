@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.org.jetbrains.kotlin.kapt)
     id("com.google.devtools.ksp")
+    id ("kotlin-parcelize")
 }
 
 android {
@@ -48,4 +49,6 @@ dependencies {
     implementation (libs.hilt.android)
     kapt (libs.hilt.android.compiler)
     implementation(libs.androidx.runtime.livedata)
+    implementation (libs.converter.gson)
+
 }

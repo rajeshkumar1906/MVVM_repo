@@ -1,7 +1,6 @@
 package com.raaz.domain.repository
 
-import com.raaz.domain.model.APIResponse
-import com.raaz.domain.model.Root
+import com.raaz.data.Root
 import retrofit2.http.GET
 
 interface APIService {

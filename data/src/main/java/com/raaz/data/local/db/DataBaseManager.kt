@@ -1,12 +1,10 @@
 package com.raaz.data.local.db
 
 import android.content.Context
-import android.provider.DocumentsContract
 import android.util.Log
 import com.raaz.data.Resource
+import com.raaz.data.Root
 import com.raaz.data.local.entity.UserEntity
-import com.raaz.domain.model.Root
-import dagger.hilt.android.EntryPointAccessors
 import kotlinx.coroutines.runBlocking
 import javax.inject.Inject
 
@@ -14,9 +12,9 @@ import javax.inject.Inject
 class DataBaseManager @Inject constructor(
     val context: Context,
     val dataBase: DataBase
-) {
+): IDataBaseManager {
 
-    fun updateDB(apiData: Resource<List<Root>>, result:(Boolean) -> Unit) {
+   override fun updateDB(apiData: Resource<List<Root>>, result:(Boolean) -> Unit) {
         runBlocking {
             val database = DataBase.getInstance(context)
 

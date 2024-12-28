@@ -5,8 +5,7 @@ import android.util.Log
 import com.raaz.data.Resource
 import com.raaz.data.local.db.DataBase
 import com.raaz.data.local.entity.UserEntity
-import com.raaz.domain.model.APIResponse
-import com.raaz.domain.model.Root
+import com.raaz.data.Root
 import com.raaz.domain.repository.APIService
 import javax.inject.Inject
 
