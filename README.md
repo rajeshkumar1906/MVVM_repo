@@ -1,1 +1,3 @@
-MVVM Architecture with Jetpack components and Compose
+#MVVM Architecture
+
+##Jetpack components and Compose
