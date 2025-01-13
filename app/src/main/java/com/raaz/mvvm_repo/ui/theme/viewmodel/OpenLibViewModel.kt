@@ -9,6 +9,7 @@ import com.raaz.domain.model.openlib.OpenLibData
 import com.raaz.domain.usecase.LibServiceUseCase
 import com.raaz.mvvm_repo.sync.WorkManagerBuilder
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.launch
@@ -30,7 +31,7 @@ class OpenLibViewModel @Inject constructor(
 
 
     fun getLibResponse(){
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             when(val response = libServiceUseCase.invoke()){
                 is Resource.Success -> {
                     _libData.value = response.result
