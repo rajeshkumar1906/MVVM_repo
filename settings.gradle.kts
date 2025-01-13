@@ -23,3 +23,4 @@ rootProject.name = "MVVM_repo"
 include(":app")
 include(":domainn")
 include(":data")
+include(":testutils")

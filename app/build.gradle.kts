@@ -126,6 +126,24 @@ dependencies {
     implementation (libs.androidx.hilt.work)
     kapt (libs.androidx.hilt.compiler)
 
+    //App center
+    implementation (libs.appcenter.analytics)
+    implementation (libs.appcenter.crashes)
+
+    //Test dependencies
+    implementation (libs.junit.jupiter.api)
+    implementation (libs.kotlinx.coroutines.test)
+    implementation (libs.mockk.android)
+    testImplementation (libs.junit)
+    testImplementation (libs.junit.jupiter.engine)
+    testImplementation (libs.junit.jupiter.params)
+    //noinspection UseTomlInstead
+    testImplementation ("io.mockk:mockk-agent:1.13.5")
+    androidTestImplementation (libs.androidx.junit)
+    androidTestImplementation (libs.androidx.espresso.core)
+    androidTestImplementation(libs.androidx.navigation.testing)
+    androidTestImplementation (libs.kotlinx.coroutines.test.v171)
+
 }
 
 //kapt {
