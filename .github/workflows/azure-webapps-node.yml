@@ -35,28 +35,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
-
-    - name: Set up Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: ${{ env.NODE_VERSION }}
-        cache: 'npm'
-
-    - name: npm install, build, and test
-      run: |
-        npm install
-        npm run build --if-present
-        npm run test --if-present
-
+    - name: Build with Gradle
+  # You may pin to the exact commit or the version.
+  # uses: gradle/actions@ac638b010cf58a27ee6c972d7336334ccaf61c96
+      uses: gradle/actions@v4.4.1
     - name: Upload artifact for deployment job
       uses: actions/upload-artifact@v4
       with:
         name: node-app
         path: .
-    - name: Build with Gradle
-  # You may pin to the exact commit or the version.
-  # uses: gradle/actions@ac638b010cf58a27ee6c972d7336334ccaf61c96
-      uses: gradle/actions@v4.4.1
+    
            
 
   deploy:
